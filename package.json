@@ -44,8 +44,6 @@
     "handlebars": "^4.7.7",
     "koa": "^2.13.1",
     "koa-livereload": "^0.2.0",
-    "koa-mount": "^4.0.0",
-    "koa-static": "^5.0.0",
     "livereload": "^0.9.3",
     "lodash": "^4.17.21",
     "lorem-ipsum": "^2.0.3",
