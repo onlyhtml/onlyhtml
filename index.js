@@ -81,15 +81,10 @@ program.run();
 
 function init() {
     Logger.info('Welcome!');
+
     let config = getConfig();
     if (!config) {
         Logger.error('Interneto website not configured!');
-        return;
-    }
-    initFirebase();
-    if (config.website === undefined) {
-        Logger.error('Website not defined!');
-        console.log(config);
         return;
     }
 
