@@ -9,9 +9,9 @@ const {program} = caporal;
 import Logger from './lib/logger.js';
 
 
-import {buildFirebase, buildRapid, buildSanity} from './build.js';
-import {serveRapid, serveSanity, serveFirebase} from './serve.js';
-import {pushFirebase, pushLocalSanityio} from './push.js';
+import {buildRapid, buildSanity} from './build.js';
+import {serveRapid, serveSanity} from './serve.js';
+import {pushLocalSanityio} from './push.js';
 
 program
     .command('push sanity', 'push structure to server')
