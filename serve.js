@@ -15,7 +15,7 @@ export async function serveSanity(config) {
     const fetcher = new SanityLiveserverFetcher(config);
     const server = new Server(fetcher, livereloadServer);
     server.start(PORT);
-    Logger.info("Server is up!");
+    Logger.info(`Server is up at http://localhost:${PORT}`);
 
     const watchPaths = [
         path.resolve('www'),

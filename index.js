@@ -12,31 +12,35 @@ import Logger from './lib/logger.js';
 import {buildRapid, buildSanity} from './build.js';
 import {serveRapid, serveSanity} from './serve.js';
 import {pushLocalSanityio} from './push.js';
+import {watchAndPushSanity} from './lib/push/sanity.js';
 
 program
-    .command('push sanity', 'push structure to server')
-    .option('--path <file>', '')
-    .action(async ({args, options}) => {
+    .command('export sanity', 'push structure to server')
+    .option('--path <file>', 'path to put sanity schema configuration')
+    .option('--watch', 'watch for schema changes in www')
+    .action(async ({options}) => {
         try {
+            // always export at first, then if watching start a watching loop
             await pushLocalSanityio(options.path);
+            if (options.watch === true) {
+                await watchAndPushSanity(options.path); 
+            }
         } catch (e) {
-            console.log('error while executing action', args.action);
-            console.log(e);
+            console.log('error', e);
         }
     })
 
     .command('build rapid', 'build output html using rapid generated content')
-    .action(async ({args}) => {
+    .action(async () => {
         try {
             await buildRapid();
         } catch (e) {
-            console.log('error while executing action', args.action);
-            console.log(e);
+            console.log('error', e);
         }
     })
 
     .command('build sanity', 'build output html using sanity.io')
-    .action(async ({args}) => {
+    .action(async ({}) => {
         let config = init();
         if (config === undefined) {
             return;
@@ -45,33 +49,29 @@ program
         try {
             await buildSanity(config);
         } catch (e) {
-            console.log('error while executing action', args.action);
-            console.log(e);
+            console.log('error', e);
         }
     })
 
     .command('serve sanity', 'live server with sanity.io backend')
-    .action(async ({args}) => {
+    .action(async () => {
         let config = init();
         if (config === undefined) {
             return;
         }
-
         try {
             await serveSanity(config);
         } catch (e) {
-            console.log('error while executing action', args.action);
-            console.log(e);
+            console.log('error', e);
         }
     })
 
     .command('serve rapid', 'live server with auto-generated content for rapid development')
-    .action(async ({args}) => {
+    .action(async () => {
         try {
             await serveRapid();
         } catch (e) {
-            console.log('error while executing action', args.action);
-            console.log(e);
+            console.log('error', e);
         }
     })
 
