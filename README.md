@@ -3,7 +3,7 @@ OnlyHtml is Static Site Generator that helps you build simple websites. You writ
 
 OnlyHtml is a companion to Headless CMS systems like Sanity.io, so you get the best experience editing your content while focusing only on the front-end code
 
-### OnlyHtml Main Goals
+### Main Goals
 - It does most of what you need, but probably not everything.
 - You only need to know HTML (plus CSS and JS to the extent that your design calls for it).
 - You should be able to learn the basics in a few minutes.
