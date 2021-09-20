@@ -40,7 +40,7 @@ export async function serveRapid() {
     const fetcher = new RapidContentFetcher(parser);
     const server = new Server(fetcher, livereloadServer);
     server.start(PORT);
-    Logger.info("Server is up!");
+    Logger.info(`Server is up at http://localhost:${PORT}`);
 
     const watchPaths = [
         www,
