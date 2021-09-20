@@ -101,8 +101,6 @@ function getConfig() {
     }
 
     config = JSON.parse(fs.readFileSync(path));
-
-    console.assert(config.website != undefined, 'Must specify website in onlyhtml config');
     config.hidden_sections = config.hidden_sections || [];
 
     return config;
