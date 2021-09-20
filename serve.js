@@ -49,7 +49,7 @@ export async function serveRapid() {
 
     livereloadServer.watch(watchPaths);
     fs.watch(www, {recursive: true}, (_eventType, _fname) => {
-        Logger.extra("[serve.js] www file changed, reload!");
+        Logger.extra("www file changed, reload!");
         server.clearCache();
     });
 
