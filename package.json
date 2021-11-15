@@ -1,6 +1,6 @@
 {
     "name": "@onlyhtml/onlyhtml",
-    "version": "1.1.8",
+    "version": "1.1.9",
     "description": "static site generator for html lovers, create CMS dashboards as you code",
     "main": "index.js",
     "type": "module",
