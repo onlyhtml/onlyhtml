@@ -2,6 +2,7 @@
 const CONFIG_FILE = 'onlyhtml.json';
 
 import fs from 'fs';
+import path from 'path';
 
 import caporal from '@caporal/core'
 const {program} = caporal;
@@ -13,6 +14,7 @@ import {buildRapid, buildSanity} from './build.js';
 import {serveRapid, serveSanity} from './serve.js';
 import {pushLocalSanityio} from './push.js';
 import {watchAndPushSanity} from './lib/push/sanity.js';
+import {CloudProvider} from './lib/cloud/index.js';
 
 program
     .command('export sanity', 'push structure to server')
@@ -23,7 +25,7 @@ program
             // always export at first, then if watching start a watching loop
             await pushLocalSanityio(options.path);
             if (options.watch === true) {
-                await watchAndPushSanity(options.path); 
+                await watchAndPushSanity(options.path);
             }
         } catch (e) {
             console.log('error', e);
@@ -74,6 +76,23 @@ program
             console.log('error', e);
         }
     })
+
+    .command('cloud upload', 'upload current project configuration to onlyhtml cloud')
+    .action(async () => {
+        let config = init();
+        if (config === undefined) {
+            return;
+        }
+
+        if (!config.cloud || !config.cloud.site) {
+            console.log('must configure cloud site');
+            return;
+        }
+
+        const cloud = new CloudProvider(config);
+        await cloud.upload();
+    })
+
 
 
 program.run();

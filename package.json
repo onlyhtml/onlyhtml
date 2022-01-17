@@ -1,6 +1,6 @@
 {
     "name": "@onlyhtml/onlyhtml",
-    "version": "1.1.12",
+    "version": "1.1.13",
     "description": "static site generator for html lovers, create CMS dashboards as you code",
     "main": "index.js",
     "type": "module",
@@ -39,7 +39,8 @@
         "@sanity/client": "^2.18.0",
         "@sanity/image-url": "^1.0.1",
         "autoprefixer": "^10.3.7",
-        "colors": "^1.4.0",
+        "axios": "^0.24.0",
+        "colors": "1.4.0",
         "css-loader": "^6.2.0",
         "deepmerge": "^4.2.2",
         "esbuild": "^0.12.26",
