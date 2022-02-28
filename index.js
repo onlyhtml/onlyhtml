@@ -2,7 +2,7 @@
 const CONFIG_FILE = 'onlyhtml.json';
 
 import fs from 'fs';
-import path from 'path';
+// import path from 'path';
 
 import caporal from '@caporal/core'
 const {program} = caporal;
@@ -15,6 +15,7 @@ import {serveRapid, serveSanity} from './serve.js';
 import {pushLocalSanityio} from './push.js';
 import {watchAndPushSanity} from './lib/push/sanity.js';
 import {CloudProvider} from './lib/cloud/index.js';
+import {buildPreview} from './lib/static-preview/index.js';
 
 program
     .command('export sanity', 'push structure to server')
@@ -93,6 +94,10 @@ program
         await cloud.upload();
     })
 
+    .command('compile preview', '')
+    .action(async () => {
+        await buildPreview();
+    })
 
 
 program.run();

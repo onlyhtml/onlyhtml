@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{template_name}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.runtime.js" integrity="sha512-0bRnmqp8jww8h5q9khSJSMF7kUFVuzAiVpbwCr1+kot0yAwtVukdBQGznIvytgpFzy6wEgFbjbNSO2xcSBHTWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/api.js"></script>
+    <script src="/hb-helpers.js"></script>
+    <script src="{template_name}"></script>
+</head>
+<body>
+    <div id="output">Loading...</div>
+    <script type="text/javascript">
+        Helpers.registerHelpers(Handlebars);
+        console.log('registerd helpers');
+
+        console.log('template: {template_name}', Handlebars.template);
+        let templateString = atob('{template_b64}');
+        console.log('after openning base64', templateString);
+
+        const templateSpec = eval(`_ = ${templateString}`);
+        console.log('template spec', templateSpec);
+
+        const template = Handlebars.template(templateSpec);
+        console.log('templateString', templateString);
+        console.log(template({hello: 'world'}));
+    </script>
+</body>
+</html>
