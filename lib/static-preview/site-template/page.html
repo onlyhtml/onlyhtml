@@ -7,21 +7,20 @@
     <script src="/hb-helpers.js"></script>
 </head>
 <body>
-    <div id="output">Loading...</div>
     <script type="text/javascript">
+        console.log('[renderer] template: {template_name}');
+
         Helpers.registerHelpers(Handlebars);
-        console.log('registerd helpers');
+        console.log('[renderer] registerd helpers');
 
-        console.log('template: {template_name}', Handlebars.template);
         let templateString = atob('{template_b64}');
-        console.log('after openning base64', templateString);
-
         const templateSpec = eval(`_ = ${templateString}`);
-        console.log('template spec', templateSpec);
-
         const template = Handlebars.template(templateSpec);
-        console.log('templateString', templateString);
-        console.log(template({hello: 'world'}));
+        console.log('[renderer] loaded template');
+
+        const engine = new Api(template);
+        engine.listen();
+        console.log('[renderer] engine is now ready');
     </script>
 </body>
 </html>
