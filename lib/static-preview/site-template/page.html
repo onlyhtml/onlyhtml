@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Preview - {template_name}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.runtime.js" integrity="sha512-0bRnmqp8jww8h5q9khSJSMF7kUFVuzAiVpbwCr1+kot0yAwtVukdBQGznIvytgpFzy6wEgFbjbNSO2xcSBHTWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/api.js"></script>
+    <script src="/hb-helpers.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        console.log('[renderer] template: {template_name}');
+
+        Helpers.registerHelpers(Handlebars);
+        console.log('[renderer] registerd helpers');
+
+        let templateString = atob('{template_b64}');
+        const templateSpec = eval(`_ = ${templateString}`);
+        const template = Handlebars.template(templateSpec);
+        console.log('[renderer] loaded template');
+
+        const engine = new Api(template);
+        engine.listen();
+        console.log('[renderer] engine is now ready');
+    </script>
+</body>
+</html>
